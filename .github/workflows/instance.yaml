@@ -22,8 +22,8 @@ jobs:
           aws-secret-access-key: 'gogF5Kvwl/GsVVx3Dyt0aNFvtPV0xGm85gMzZIBI'
 
       - name: Generate report
-        # run: report.sh
-        run: aws-describe-instances
+        run: report.sh
+        # run: aws-describe-instances
         shell: bash
 
 
