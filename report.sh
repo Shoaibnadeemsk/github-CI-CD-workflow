@@ -1,4 +1,3 @@
-#!bin/bash
 # aws-describe-instances   #Details of the instance
 # aws ec2 describe-subnets   #Details of the subnets
 # aws ec2 describe-instances --instance-id i-06de2e63e4b57f1a8\
