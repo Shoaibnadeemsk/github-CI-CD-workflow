@@ -13,8 +13,8 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update
       - name: Generate report
-        # run: report.sh
-        run: aws --version
+        run: report.sh
+        # run: aws --version
         shell: bash
 
       - name: AWS Credentials Configuration
