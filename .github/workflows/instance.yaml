@@ -13,7 +13,7 @@ jobs:
 
       - name: Install dependencies
         run: sudo apt-get update
-        
+
       - name: AWS Credentials Configuration
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -22,8 +22,8 @@ jobs:
           aws-secret-access-key: 'gogF5Kvwl/GsVVx3Dyt0aNFvtPV0xGm85gMzZIBI'
 
       - name: Generate report
-        run: report.sh
-        # run: aws --version
+        # run: report.sh
+        run: aws-describe-instances
         shell: bash
 
 
