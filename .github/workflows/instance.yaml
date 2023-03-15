@@ -15,7 +15,7 @@ jobs:
       - name: Generate report
         # run: report.sh
         run: aws --version
-        bash: shell
+        shell: bash
 
       - name: AWS Credentials Configuration
         uses: aws-actions/configure-aws-credentials@v1
