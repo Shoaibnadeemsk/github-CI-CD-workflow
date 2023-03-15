@@ -21,4 +21,4 @@ jobs:
          aws-region: ap-south-1
          aws-access-key-id: AKIAZQLPN7YWTET2ZAUP
          aws-secret-access-key: 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
-         aws-session-token: 
+
