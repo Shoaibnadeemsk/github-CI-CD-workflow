@@ -18,7 +18,7 @@ jobs:
       - name: AWS Credentials Configuration
         uses: aws-actions/configure-aws-credentials@v1
           with:
-            aws-region: ap-south-1
-            aws-access-key-id: AKIAZQLPN7YWTET2ZAUP
-            aws-secret-access-key: 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
+            aws-region: 'ap-south-1'
+            aws-access-key-id: 'AKIAZQLPN7YWTET2ZAUP'
+            aws-secret-access-key: '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'
 
