@@ -38,6 +38,7 @@
 
 #To output the instance details to a file
    # echo -e "$instance_details" > instance_details.txt
+   #scp -i instance_details.txt ec2user::/home/
 
 #To retrieve the CPU details
 # aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
