@@ -23,7 +23,9 @@ jobs:
 
       - name: Generate report
         # run: report.sh
-        run: aws ec2 describe-subnets
+        run: |
+        aws ec2 describe-subnets
+        aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
         shell: bash
 
 
