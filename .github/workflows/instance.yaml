@@ -30,16 +30,11 @@ jobs:
       - name: copy output into a file
         run: | 
            echo -e "$instance_details" > instance_details.txt
-           scp src/instance_details.txt/Desktop
-
-
-
-
-      # - name: Upload output file
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: instance_details.txt
-      #     path: instance_details.txt
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+        with:
+          name: instance_details.txt
+          path: output.txt
 
 
 
