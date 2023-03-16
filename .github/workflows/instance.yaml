@@ -25,8 +25,8 @@ jobs:
         # run: report.sh
         shell: bash
         run: |
-        aws ec2 describe-subnets
-        aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
+           aws ec2 describe-subnets
+           aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
         
 
 
