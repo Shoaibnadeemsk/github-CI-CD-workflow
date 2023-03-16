@@ -1,4 +1,4 @@
-# aws-describe-instances   #Details of the instance
+# aws ec2 describe-instances   #Details of the instance
 # aws ec2 describe-subnets   #Details of the subnets
 # aws ec2 describe-instances --instance-id i-06de2e63e4b57f1a8\
 #   --query 'Reservations[*].Instances[*].[InstanceId,ImageId,Tags[*]]' \
@@ -40,6 +40,6 @@
    # echo -e "$instance_details" > instance_details.txt
 
 #To retrieve the CPU details
-aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
---statistics Maximum --dimensions Name=InstanceId,Value=i-1234567890abcdef0 \
---start-time 2022-10-18T23:18:00 --end-time 2022-10-19T23:18:00
+# aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
+# --statistics Maximum --dimensions Name=InstanceId,Value=i-1234567890abcdef0 \
+# --start-time 2022-10-18T23:18:00 --end-time 2022-10-19T23:18:00
