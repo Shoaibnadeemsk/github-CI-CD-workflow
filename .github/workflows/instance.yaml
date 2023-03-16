@@ -25,7 +25,7 @@ jobs:
         # run: report.sh
         shell: bash
         run: |
-          chmod +x report.sh \
+          chmod 777 report.sh \
            aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
            ./report.sh
 
