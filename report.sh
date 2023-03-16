@@ -35,3 +35,11 @@
 #     files: |
 #       test-results/**/*.xml
 #       test-results/**/*.trx
+
+#To output the instance details to a file
+   # echo -e "$instance_details" > instance_details.txt
+
+#To retrieve the CPU details
+aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
+--statistics Maximum --dimensions Name=InstanceId,Value=i-1234567890abcdef0 \
+--start-time 2022-10-18T23:18:00 --end-time 2022-10-19T23:18:00
