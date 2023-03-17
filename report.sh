@@ -1,5 +1,5 @@
  #aws ec2 describe-instances   #Details of the instance
- #aws ec2 describe-subnets   #Details of the subnets
+ aws ec2 describe-subnets   #Details of the subnets
 # aws ec2 describe-instances --instance-id i-06de2e63e4b57f1a8\
 #   --query 'Reservations[*].Instances[*].[InstanceId,ImageId,Tags[*]]' \
 #   --output text         # Details of instanceId, ImageId and Tags
@@ -54,6 +54,6 @@
 #$(aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization --dimensions Name=InstanceId,Value="$instance_id" --start-time $(date +%s -d '5 minutes ago') --end-time $(date +%s) --period 300 --statistics Average --query 'Datapoints[0].Average')
 
  #processes
-  $(ssh ec2-user@"$public_ip" 'ps aux | wc -l')
+  #$(ssh ec2-user@"$public_ip" 'ps aux | wc -l')
 #new_tools
   #$(ssh ec2-user@"$public_ip" 'yum list installed | wc -l')
