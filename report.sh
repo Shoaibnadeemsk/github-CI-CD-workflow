@@ -53,5 +53,5 @@
 #RAM 
 #$(aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization --dimensions Name=InstanceId,Value="$instance_id" --start-time $(date +%s -d '5 minutes ago') --end-time $(date +%s) --period 300 --statistics Average --query 'Datapoints[0].Average')
 
-processes=$(ssh ec2-user@"$public_ip" 'ps aux | wc -l')
+ processes=$(ssh ec2-user@"$public_ip" 'ps aux | wc -l')
 #new_tools=$(ssh ec2-user@"$public_ip" 'yum list installed | wc -l')
