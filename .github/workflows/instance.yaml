@@ -29,12 +29,6 @@ jobs:
            ./report.sh
            aws ec2 describe-instances --instance-ids --query "Reservations[*].Instances[*].RunningProcesses[].ProcessName" --output text | wc -l
 
-    
-    
-  
-
-
-
 
 
 
