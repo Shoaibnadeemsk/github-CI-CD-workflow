@@ -39,6 +39,12 @@ jobs:
       #     name: instance_details.txt
       #     path: output.txt
 
-
-
+      #  Process to increase memory through aws cli in github actions
+      #  - name: Increase EC2 instance memory
+      #    run: 
+      #       aws ec2 modify-instance-attribute --instance-id <instance-id> --attribute memory.value --value <memory-value>
+         Process to increase storage through aws cli in github actions
+         - name: Increase EBS volume size
+           run: 
+              aws ec2 modify-volume --volume-id <volume-id> --size <new-size>
 
