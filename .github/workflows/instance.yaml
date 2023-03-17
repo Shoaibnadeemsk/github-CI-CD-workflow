@@ -27,11 +27,9 @@ jobs:
           
            chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
            ./report.sh
-           aws ec2 describe-instances --instance-ids --query "Reservations[*].Instances[*].RunningProcesses[].ProcessName" --output text | wc -l
+           
 
-
-
-
+      # aws ec2 describe-instances --instance-ids --query "Reservations[*].Instances[*].RunningProcesses[].ProcessName" --output text | wc -l
       # - name: copy output into a file
       #   run: | 
       #      echo -e "$instance_details" > instance_details.txt
