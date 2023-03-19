@@ -26,9 +26,11 @@ jobs:
         run: |
           
            chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
+           $(aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization --dimensions Name=InstanceId,Value="$instance_id" --start-time $(date +%s -d '5 minutes ago') --end-time $(date +%s) --period 300 --statistics Average --query 'Datapoints[0].Average')
            ./report.sh
-           aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[].Instances[].MemoryInfo.SizeInMiB' --output text
-
+      
+      
+      
       # aws ec2 describe-instances --instance-ids --query "Reservations[*].Instances[*].RunningProcesses[].ProcessName" --output text | wc -l
       # - name: copy output into a file
       #   run: | 
