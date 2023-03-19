@@ -22,6 +22,10 @@
 #     --query 'Reservations[*].Instances[*].{Instance:InstanceId,AZ:Placement.AvailabilityZone,Name:Tags[?Key==`Name`]|[0].Value}' \
 #     --output table
 
+  # ssh ec2-user@"public-ip"'yum list installed | wc -l'
+
+
+
 # #to list all installed packages on Ubuntu
 # apt list --installed
 
@@ -60,3 +64,8 @@
   #$(ssh ec2-user@"$public_ip" 'ps aux | wc -l')
 #new_tools
   #$(ssh ec2-user@"$public_ip" 'yum list installed | wc -l')
+
+#aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization --dimensions Name=InstanceId,Value="$instance_id" --start-time $(date +%s -d '5 minutes ago') --end-time $(date +%s) --period 300 --statistics Average --query 'Datapoints[0].Average'
+# aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization  --period 3600 \
+#            --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
+#            --start-time 2023-03-18T23:18:00 --end-time 2023-03-19T23:22:00
