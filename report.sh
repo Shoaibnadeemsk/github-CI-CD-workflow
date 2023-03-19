@@ -1,5 +1,5 @@
  aws ec2 describe-instances   #Details of the instance
- #aws ec2 describe-subnets   #Details of the subnets
+ aws ec2 describe-subnets   #Details of the subnets
 # aws ec2 describe-instances --instance-id i-06de2e63e4b57f1a8\
 #   --query 'Reservations[*].Instances[*].[InstanceId,ImageId,Tags[*]]' \
 #   --output text         # Details of instanceId, ImageId and Tags
