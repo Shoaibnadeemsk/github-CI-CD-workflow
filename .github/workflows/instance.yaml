@@ -56,4 +56,6 @@ jobs:
         #  - name: Increase EBS volume size
         #    run: 
         #       aws ec2 modify-volume --volume-id <volume-id> --size <new-size>
-
+        
+        #For optimize the instance
+        #aws ec2 modify-instance-attribute --instance-id <instance-id> --instance-type <optimized-instance-type>
