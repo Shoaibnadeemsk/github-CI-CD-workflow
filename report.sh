@@ -77,4 +77,5 @@
 #     echo "${INSTANCE_INFO}"
 #aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].{ID:InstanceId,Name:Tags[?Key==`Name`]|[0].Value,Software:BlockDeviceMappings[*].Ebs.VolumeId}'
 #aws ssm get-inventory --instance-id <instance-id> --query "Entities[*].Data.Applications[?Name=='httpd'].Version | [0]" --output text
+#aws ssm describe-instance-information --instance-information-filter-list "key=PingStatus,value=Online" --query "InstanceInformationList[0].InstanceId" --output text | xargs aws ssm list-inventory-entries --instance-id | jq '.Entries[] | select(.TypeName == "AWS:Application") | {Name: .Name, Version: .Version}'
 
