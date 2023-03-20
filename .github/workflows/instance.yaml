@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: instance_details.txt
-          path: output/test/file.txt
+          path: output/test/file
            
           
            
@@ -82,3 +82,8 @@ jobs:
          #ssh ec2-user@43.205.139.81 'yum list installed | wc -l'
          #ssh ec2-user@"$public_ip" 'ps aux | wc -l'
          #ssh ec2-user@43.205.139.81
+          # name: List running processes
+          #  run: |
+          # INSTANCE_ID=<your-instance-id>
+          # PROCESS_INFO=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].NetworkInterfaces[0].Association.PublicIp' --output text | xargs ssh ec2-user@)
+          # echo "$PROCESS_INFO"
