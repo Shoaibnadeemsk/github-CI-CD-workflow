@@ -59,4 +59,4 @@ jobs:
         #For optimize the instance
         #aws ec2 modify-instance-attribute --instance-id <instance-id> --instance-type <optimized-instance-type>
         #ssh ec2-user@"public-ip"'yum list installed | wc -l'
-        ssh ec2-user@172.31.44.180 'yum list installed | wc -l'
+         #ssh ec2-user@172.31.44.180 'yum list installed | wc -l'
