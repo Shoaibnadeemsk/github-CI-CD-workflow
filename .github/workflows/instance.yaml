@@ -28,9 +28,9 @@ jobs:
           echo -e "$instance_details" > instance_details.txt
       - name: Upload output file
         uses: actions/upload-artifact@v2
-        with:
-          name: instance_details.txt
-          path: output/test/file
+        # with:
+        #   name: instance_details
+        #   path: output/test/file.txt
            
           
            
