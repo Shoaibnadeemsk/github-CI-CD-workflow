@@ -36,7 +36,7 @@ jobs:
            echo -e "$instance_details" > instance_details.txt
       - name: Upload output file
         uses: actions/upload-artifact@v2
-         with:
+          with:
             name: instance_details.txt
             path: C:\Users\hayathullalh\OneDrive\Desktop\github-CI-CD-workflow
            
