@@ -34,8 +34,8 @@ jobs:
            aws ec2 describe-instance-types --instance-types t2.micro --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
            aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].InstanceType' --output text | xargs -I {} aws ec2 describe-instance-types --instance-types {} --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
            aws ssm get-inventory --query "Entities[*].Data.Applications"
-           ssh ec2-user@43.205.139.81 
-           ls
+            
+           
 
 
            
@@ -67,3 +67,4 @@ jobs:
         #ssh ec2-user@"public-ip"'yum list installed | wc -l'
          #ssh ec2-user@43.205.139.81 'yum list installed | wc -l'
          #ssh ec2-user@"$public_ip" 'ps aux | wc -l'
+         #ssh ec2-user@43.205.139.81
