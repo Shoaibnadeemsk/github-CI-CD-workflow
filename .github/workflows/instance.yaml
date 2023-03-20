@@ -26,17 +26,16 @@ jobs:
         run: |
           chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table > instance_data.txt
 
-      - name: Upload output file
-        uses: actions/upload-artifact@v2
-        with:
-          name: instance_data
-          path: "*/home/details"
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: instance_details
+          path: instance_data.txt
 
       - name: download output file
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
-          name: instance_data
-          path: "*/home/details/instance_data.txt"
+          name: instance_details
 
       # - name: seeing the file
       #   run: cat downloaded_instance_details.txt
