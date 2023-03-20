@@ -39,6 +39,8 @@ jobs:
           name: instance_details
           path: downloaded_instance_details.txt           
           
+      - name: seeing the file
+        run: cat downloaded_instance_details.txt
            
 
 
