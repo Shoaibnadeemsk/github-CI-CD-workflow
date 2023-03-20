@@ -21,6 +21,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+
+
+      - name: ssh
+        shell: bash
+        run: |
+          ssh -i "GA_Example.pem" ec2-user@43.205.139.81 
+
       - name: Generate report
         shell: bash
         run: |
