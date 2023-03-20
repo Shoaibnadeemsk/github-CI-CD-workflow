@@ -25,7 +25,12 @@ jobs:
         shell: bash
         run: |
           chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
-           
+          echo -e "$instance_details" > instance_details.txt
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+        with:
+          name: instance_details.txt
+          path: output/test/file.txt
            
           
            
