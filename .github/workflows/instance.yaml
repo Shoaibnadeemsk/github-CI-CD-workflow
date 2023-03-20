@@ -33,8 +33,12 @@ jobs:
            aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,MemoryInfo]' --output text
            aws ec2 describe-instance-types --instance-types t2.micro --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
            aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].InstanceType' --output text | xargs -I {} aws ec2 describe-instance-types --instance-types {} --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
-           ssh ec2-user@43.205.139.81 'yum list installed'
-            
+           echo -e "$instance_details" > instance_details.txt
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+         with:
+            name: instance_details.txt
+            path: C:\Users\hayathullalh\OneDrive\Desktop\github-CI-CD-workflow
            
 
 
