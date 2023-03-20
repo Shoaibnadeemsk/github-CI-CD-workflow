@@ -33,7 +33,7 @@ jobs:
            aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,MemoryInfo]' --output text
            aws ec2 describe-instance-types --instance-types t2.micro --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
            aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].InstanceType' --output text | xargs -I {} aws ec2 describe-instance-types --instance-types {} --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
-           aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].{ID:InstanceId,Name:Tags[?Key==`Name`]|[0].Value,Software:BlockDeviceMappings[*].Ebs.VolumeId}'
+           aws ssm get-inventory --instance-id i-036e1249186882ece --query "Entities[*].Data.AWS:InstanceInformation.PlatformName == 'Amazon Linux 2' && Entities[*].Data.Applications[*].Name == 'httpd' && Entities[*].Data.Applications[*].Version != null" --output json
 
            
       

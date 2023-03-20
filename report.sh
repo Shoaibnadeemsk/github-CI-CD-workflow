@@ -76,3 +76,4 @@
 #     INSTANCE_INFO=$(aws ec2 describe-instances --instance-ids <instance-id> --query 'Reservations[*].Instances[*].{ID:InstanceId,Name:Tags[?Key==`Name`]|[0].Value,Software:BlockDeviceMappings[*].Ebs.VolumeId}')
 #     echo "${INSTANCE_INFO}"
 #aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].{ID:InstanceId,Name:Tags[?Key==`Name`]|[0].Value,Software:BlockDeviceMappings[*].Ebs.VolumeId}'
+#aws ssm get-inventory --instance-id i-036e1249186882ece --query "Entities[*].Data.AWS:InstanceInformation.PlatformName == 'Amazon Linux 2' && Entities[*].Data.Applications[*].Name == 'httpd' && Entities[*].Data.Applications[*].Version != null" --output json
