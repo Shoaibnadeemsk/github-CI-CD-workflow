@@ -71,3 +71,8 @@
 #            --start-time 2023-03-18T23:18:00 --end-time 2023-03-19T23:22:00
 
 #aws ec2 describe-instance-types --instance-types t2.micro --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
+#  - name: Print installed software
+#   run: |
+#     INSTANCE_INFO=$(aws ec2 describe-instances --instance-ids <instance-id> --query 'Reservations[*].Instances[*].{ID:InstanceId,Name:Tags[?Key==`Name`]|[0].Value,Software:BlockDeviceMappings[*].Ebs.VolumeId}')
+#     echo "${INSTANCE_INFO}"
+#aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].{ID:InstanceId,Name:Tags[?Key==`Name`]|[0].Value,Software:BlockDeviceMappings[*].Ebs.VolumeId}'
