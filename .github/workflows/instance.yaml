@@ -28,6 +28,9 @@ jobs:
       - name: List running processes
         run: |
           aws ssm start-session --target  i-06474f0e051d3c623 | uname
+      - name: server os
+        run: |
+          uname
           
       - name: uplod-artifacts
         uses: actions/upload-artifact@v3
