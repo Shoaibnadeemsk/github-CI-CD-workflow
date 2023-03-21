@@ -27,6 +27,7 @@ jobs:
           chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
       - name: List running processes
         run: |
+          aws ssm start-session --target  i-06474f0e051d3c623 
           ps aux
       - name: uplod-artifacts
         uses: actions/upload-artifact@v3
