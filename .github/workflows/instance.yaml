@@ -27,9 +27,7 @@ jobs:
           chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
       - name: List running processes
         run: |
-           INSTANCE_ID=i-06474f0e051d3c623
-           PROCESS_INFO=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].NetworkInterfaces[0].Association.PublicIp' --output text | xargs ssh ec2-user@43.205.139.81)
-           echo "$PROCESS_INFO" 
+          ps aux
       - name: uplod-artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -53,12 +51,8 @@ jobs:
       #      aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,MemoryInfo]' --output text
       #      aws ec2 describe-instance-types --instance-types t2.micro --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
       #      aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].InstanceType' --output text | xargs -I {} aws ec2 describe-instance-types --instance-types {} --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
-      #      echo -e "$instance_details" > instance_details.txt
-      # - name: Upload output file
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: instance_details
-      #     path: C:\Users\hayathullalh\OneDrive\Desktop\github-CI-CD-workflow 
+      
+      
 
            
 
