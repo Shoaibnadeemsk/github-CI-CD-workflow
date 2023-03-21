@@ -20,17 +20,17 @@ jobs:
           aws-region: 'ap-south-1'
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
+      - name: server os
+        run: |
+          uname -a
       - name: Generate report
         shell: bash
         run: |
           chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
-      - name: List running processes
-        run: |
-          aws ssm start-session --target  i-06474f0e051d3c623 | uname -a
-      - name: server os
-        run: |
-          uname -a
+      # - name: List running processes
+      #   run: |
+      #     aws ssm start-session --target  i-06474f0e051d3c623 | uname -a
+
           
       - name: uplod-artifacts
         uses: actions/upload-artifact@v3
