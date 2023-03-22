@@ -17,10 +17,10 @@
 # #Running processes
 aws ec2 describe-instances --instance-ids $Instance_Id --query "Reservations[*].Instances[*].RunningProcesses[].ProcessName" --output text 
 # #Details of the AZ, instances, and name
-# aws ec2 describe-instances \
-#     --filters Name=tag-key,Values=Name \
-#     --query 'Reservations[*].Instances[*].{Instance:InstanceId,AZ:Placement.AvailabilityZone,Name:Tags[?Key==`Name`]|[0].Value}' \
-#     --output table
+ aws ec2 describe-instances \
+     --filters Name=tag-key,Values=Name \
+     --query 'Reservations[*].Instances[*].{Instance:InstanceId,AZ:Placement.AvailabilityZone,Name:Tags[?Key==`Name`]|[0].Value}' \
+     --output table
 
   # ssh ec2-user@"public-ip"'yum list installed | wc -l'
 
