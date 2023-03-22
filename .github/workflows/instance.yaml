@@ -31,8 +31,7 @@ jobs:
 
       - name: Commands for EC2
         run: | 
-          ps aux 
-          yum list installed 
+          ps aux | yum list installed 
           echo "Hello, world!"
        
       - name: Generate report
