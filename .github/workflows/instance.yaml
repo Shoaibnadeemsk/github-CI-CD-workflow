@@ -30,6 +30,8 @@ jobs:
           port : 22 
           script: |
             hostname -i
+            status=$(aws ec2 describe-instance-status --instance-ids i-06474f0e051d3c623 --query 'InstanceStatuses[0].InstanceStatus.Details[?StatusName==Docker].Status' --output text)
+            echo $status  
 
       - name: Commands for EC2
         run: 
@@ -52,11 +54,7 @@ jobs:
         with:
           name: instance_details
 
-      - name: a aws cli cmd
-        shell: bash
-        run: |
-          status=$(aws ec2 describe-instance-status --instance-ids i-06474f0e051d3c623 --query 'InstanceStatuses[0].InstanceStatus.Details[?StatusName==Docker].Status' --output text)
-          echo $status
+    
 
       
            
