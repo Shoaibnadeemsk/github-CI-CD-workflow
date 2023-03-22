@@ -20,12 +20,6 @@ jobs:
           aws-region: 'ap-south-1'
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      
-      - name: Generate report
-        shell: bash
-        run: 
-          chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
-    
     steps:
       - name: connecting to EC2
         uses: actions/checkout@v2     
@@ -37,6 +31,12 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           echo "Hello, world!"
+      - name: Generate report
+        shell: bash
+        run: 
+          chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
+    
+    
       - name: uplod-artifacts
         uses: actions/upload-artifact@v3
         with:
