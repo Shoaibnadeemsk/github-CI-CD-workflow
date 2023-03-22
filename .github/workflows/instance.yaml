@@ -28,12 +28,13 @@ jobs:
           host : ${{ secrets.HOST }}
           username : ${{ secrets.USER_NAME }}
           port : 22 
-          script: whoami
+          script: |
+            whoami
+            ps aux
+              
 
       - name: Commands for EC2
-        run: | 
-          ps aux 
-          dpkg -l
+        run: 
           echo "Hello, world!"
        
       - name: Generate report
