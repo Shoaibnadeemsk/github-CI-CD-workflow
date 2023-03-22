@@ -30,7 +30,7 @@ jobs:
           port : 22 
           script: |
             hostname -i
-            status=$(aws ec2 describe-instance-status --instance-ids i-06474f0e051d3c623 --query 'InstanceStatuses[0].InstanceStatus.Details[?StatusName=='httpd'].Status' --output text)
+            status=$(aws ec2 describe-instance-status --region ap-south-1 --instance-ids i-06474f0e051d3c623 --query 'InstanceStatuses[0].InstanceStatus.Details[?StatusName=='httpd'].Status' --output text)
             echo $status  
 
       - name: Commands for EC2
