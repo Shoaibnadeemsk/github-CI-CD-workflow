@@ -14,8 +14,8 @@
  aws ec2 describe-instances --instance-ids $Instance_Id --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,Placement.AvailabilityZone]' --output text
 # #Instance Details running or stopped 
  aws ec2 describe-instances --filters Name=instance-state-name,Values=stopped --query "Reservations[*].Instances[*].[InstanceId,InstanceType,PrivateIpAddress,PublicIpAddress,State.Name,Placement.AvailabilityZone,RamdiskId]"
-# #Running processes
-aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query "Reservations[*].Instances[*].RunningProcesses[].ProcessName" --output text 
+ aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query "Reservations[*].Instances[*].[InstanceId,InstanceType,PrivateIpAddress,PublicIpAddress,State.Name,Placement.AvailabilityZone,RamdiskId]"
+
 # #Details of the AZ, instances, and name
  aws ec2 describe-instances \
      --filters Name=tag-key,Values=Name \
