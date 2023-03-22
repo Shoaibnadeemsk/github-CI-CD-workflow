@@ -24,14 +24,14 @@ jobs:
       - name: connecting to EC2
         uses: appleboy/ssh-action@master     
         with:
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          HOSTNAME : ${{ secrets.HOST }}
-          USER_NAME : ${{ secrets.USER_NAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          hostname : ${{ secrets.HOST }}
+          username : ${{ secrets.USER_NAME }}
 
       - name: Commands for EC2
         run: 
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME}
+          echo ${{ secrets.PRIVATE_KEY }} > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.USER_NAME }}@$${{ secrets.HOST }}
           echo "Hello, world!"
        
       - name: Generate report
