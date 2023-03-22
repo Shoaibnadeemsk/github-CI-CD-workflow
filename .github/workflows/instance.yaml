@@ -93,14 +93,8 @@ jobs:
 
       #'yum list installed | wc -l'
       # aws ec2 describe-instances --instance-ids --query "Reservations[*].Instances[*].RunningProcesses[].ProcessName" --output text | wc -l
-      # - name: copy output into a file
-      #   run: | 
-      #      echo -e "$instance_details" > instance_details.txt
-      # - name: Upload output file
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: instance_details.txt
-      #     path: output.txt
+     
+      
 
       #  Process to increase memory through aws cli in github actions
       #  - name: Increase EC2 instance memory
