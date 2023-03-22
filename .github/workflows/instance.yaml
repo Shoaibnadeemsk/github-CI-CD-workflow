@@ -22,7 +22,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: connecting to EC2
-        uses: actions/checkout@v2     
+        uses: appleboy/ssh-action@master     
         with:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           HOSTNAME : ${{ secrets.HOST }}
@@ -30,7 +30,8 @@ jobs:
 
       - name: Commands for EC2
         run: 
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key; ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME}
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME}
           echo "Hello, world!"
        
       - name: Generate report
@@ -115,7 +116,6 @@ jobs:
           #     host: ${{ secrets.HOST }}
           #     username: ${{ secrets.USER_NAME }}
           #     key: ${{ secrets.PRIVATE_KEY }}
-          #     port: ${{ secrets.PORT }}
               # script: |
               #   echo "Hello, world!"
           
