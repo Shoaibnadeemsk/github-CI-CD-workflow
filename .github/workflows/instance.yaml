@@ -31,7 +31,7 @@ jobs:
 
       - name: Commands for EC2
         run: | 
-          ps aux | grep apache
+          ps aux 
           echo "Hello, world!"
        
       - name: Generate report
