@@ -25,28 +25,18 @@
 # The following command filters the list to only your t2.micro instances and outputs only the InstanceId values for each match.
  aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId"
 
-
-
-# #to list all installed packages on Ubuntu
-# apt list --installed
-
-
-
-#To publish the result in ubuntu
-# - name: Publish Test Results
-#   uses: EnricoMi/publish-unit-test-result-action@v2
-#   if: always()
-#   with:
-#     files: |
-#       test-results/**/*.xml
-#       test-results/**/*.trx
-
-
-
 #To retrieve the CPU details
  aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
  --start-time 2023-03-18T23:18:00 --end-time 2023-03-24T23:18:00
+
+aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization  --period 3600 \
+ --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
+ --start-time 2023-03-18T23:18:00 --end-time 2023-03-19T23:22:00
+
+# #to list all installed packages on Ubuntu
+# apt list --installed
+
 
 #aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=<your-instance-id> --start-time $(date -u +%FT%TZ --date '-1 hour') --end-time $(date -u +%FT%TZ) --period 60 --statistics Maximum
 
@@ -79,3 +69,11 @@
 #aws ssm describe-instance-information --instance-information-filter-list "key=PingStatus,value=Online" --query "InstanceInformationList[0].InstanceId" --output text | xargs aws ssm list-inventory-entries --instance-id | jq '.Entries[] | select(.TypeName == "AWS:Application") | {Name: .Name, Version: .Version}'
 
 #ssh -i ./GA_Example.pem ec2-user@3.110.184.42
+#To publish the result in ubuntu
+# - name: Publish Test Results
+#   uses: EnricoMi/publish-unit-test-result-action@v2
+#   if: always()
+#   with:
+#     files: |
+#       test-results/**/*.xml
+#       test-results/**/*.trx
