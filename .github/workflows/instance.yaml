@@ -31,7 +31,6 @@ jobs:
           script: |
             hostname -i
             yum list installed | grep Docker
-            yum list installed | grep python
               
 
       - name: Commands for EC2
