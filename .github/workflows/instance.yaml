@@ -30,8 +30,10 @@ jobs:
           port : 22 
           script: |
             hostname -i
+            yum list installed | grep httpd
+            yum list installed | grep git
+            yum list installed | grep python
             yum list installed | grep Docker
-              
 
       - name: Commands for EC2
         run: 
