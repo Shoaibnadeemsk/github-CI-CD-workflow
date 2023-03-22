@@ -25,9 +25,9 @@ jobs:
         uses: appleboy/ssh-action@master     
         with:
           key: ${{ secrets.PRIVATE_KEY }}
-          hostname : ${{ secrets.HOST }}
+          host : ${{ secrets.HOST }}
           username : ${{ secrets.USER_NAME }}
-          port : 22
+          port : 22 
 
       - name: Commands for EC2
         run: 
