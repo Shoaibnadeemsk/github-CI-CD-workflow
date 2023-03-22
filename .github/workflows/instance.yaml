@@ -30,7 +30,7 @@ jobs:
           port : 22 
           script: |
             hostname -i
-            ps aux >instance_data.txt
+            ps aux >instance_real_data.txt
 
       - name: Commands for EC2
         run: 
@@ -49,11 +49,22 @@ jobs:
         with:
           name: instance_details
           path: instance_data.txt
+      
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: instance_real_details
+          path: instance_real_data.txt
 
       - name: download output file
         uses: actions/download-artifact@v3
         with:
           name: instance_details
+      
+      - name: download output file
+        uses: actions/download-artifact@v3
+        with:
+          name: instance_real_details
 
     
 
