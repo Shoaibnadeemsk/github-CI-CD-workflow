@@ -44,23 +44,23 @@ jobs:
 
           
     
-      - name: uplod-artifacts
+      - name: upload-artifacts
         uses: actions/upload-artifact@v3
         with:
           name: instance_details
           path: instance_data.txt
       
+      - name: download output file
+        uses: actions/download-artifact@v3
+        with:
+          name: instance_details
+
       - name: upload-artifacts
         uses: actions/upload-artifact@v3
         with:
           name: instance_real_details
           path: instance_real_data.txt
-
-      - name: download output file
-        uses: actions/download-artifact@v3
-        with:
-          name: instance_details
-      
+          
       - name: download output file
         uses: actions/download-artifact@v3
         with:
