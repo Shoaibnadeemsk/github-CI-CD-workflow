@@ -25,8 +25,18 @@ jobs:
         shell: bash
         run: |
           chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
-          ssh -i ./.github/workflows/GA_Example.pem  ec2-user@3.110.184.42
-          
+    steps:
+      - name: Deploy in EC2
+      - uses: actions/checkout@v2     
+        env:
+           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+           HOSTNAME : ${{ secrets.HOST }}
+           USER_NAME : ${{ secrets.USER_NAME }}
+
+           run: |
+             echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+             ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+             echo "Hello, world!"
       - name: uplod-artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -96,3 +106,15 @@ jobs:
           # INSTANCE_ID=<your-instance-id>
           # PROCESS_INFO=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].NetworkInterfaces[0].Association.PublicIp' --output text | xargs ssh ec2-user@)
           # echo "$PROCESS_INFO"
+
+          # - name: Deploy to AWS EC2 instance
+          #   uses: appleboy/ssh-action@master
+          #   with:
+          #     host: ${{ secrets.HOST }}
+          #     username: ${{ secrets.USER_NAME }}
+          #     key: ${{ secrets.PRIVATE_KEY }}
+          #     port: ${{ secrets.PORT }}
+              # script: |
+              #   echo "Hello, world!"
+          
+           
