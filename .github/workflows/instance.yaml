@@ -23,7 +23,7 @@ jobs:
     
       - name: connecting to EC2
         uses: actions/checkout@v2     
-        env:
+        with:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           HOSTNAME : ${{ secrets.HOST }}
           USER_NAME : ${{ secrets.USER_NAME }}
