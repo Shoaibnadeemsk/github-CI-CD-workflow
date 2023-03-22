@@ -30,7 +30,8 @@ jobs:
           port : 22 
 
       - name: Commands for EC2
-        run: 
+        run: | 
+          ps aux | grep apache
           echo "Hello, world!"
        
       - name: Generate report
