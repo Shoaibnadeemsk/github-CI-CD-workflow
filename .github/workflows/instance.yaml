@@ -30,7 +30,7 @@ jobs:
           port : 22 
           script: |
             hostname -i
-            ps aux >instance_real_data.txt
+            ps aux 
 
       - name: Commands for EC2
         run: 
@@ -55,19 +55,7 @@ jobs:
         with:
           name: instance_details
 
-      - name: upload-artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: instance_real_details
-          path: instance_real_data.txt
-          
-      - name: download output file
-        uses: actions/download-artifact@v3
-        with:
-          name: instance_real_details
-
-    
-
+   
       
            #chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table 
           #aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
