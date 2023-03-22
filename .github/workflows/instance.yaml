@@ -30,7 +30,6 @@ jobs:
           port : 22 
           script: |
             whoami
-            ps aux 
             yum list installed
               
 
