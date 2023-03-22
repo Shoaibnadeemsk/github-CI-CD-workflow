@@ -27,6 +27,7 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           hostname : ${{ secrets.HOST }}
           username : ${{ secrets.USER_NAME }}
+          port : 22
 
       - name: Commands for EC2
         run: 
