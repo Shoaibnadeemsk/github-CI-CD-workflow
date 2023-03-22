@@ -31,8 +31,6 @@ jobs:
 
       - name: Commands for EC2
         run: 
-          echo ${{ secrets.PRIVATE_KEY }} > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.USER_NAME }}@$${{ secrets.HOST }}
           echo "Hello, world!"
        
       - name: Generate report
@@ -123,3 +121,5 @@ jobs:
           # run: 
           # echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           # ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          # echo ${{ secrets.PRIVATE_KEY }} > private_key && chmod 600 private_key
+          # ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.USER_NAME }}@$${{ secrets.HOST }}
