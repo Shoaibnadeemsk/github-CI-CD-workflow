@@ -32,7 +32,7 @@ jobs:
 
       - name: Commands for EC2
         run: | 
-          ps -ef 
+          ps -ef | grep httpd
           echo "Hello, world!"
        
       - name: Generate report
