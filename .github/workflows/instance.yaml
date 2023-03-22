@@ -40,7 +40,7 @@ jobs:
         shell: bash
         run: |
           chmod 777 report.sh
-          ./report.sh 
+          ./report.sh > instance_data.txt
 
           
     
