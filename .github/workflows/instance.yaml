@@ -30,10 +30,6 @@ jobs:
           port : 22 
           script: |
             hostname -i
-            yum list installed | grep httpd
-            yum list installed | grep git
-            yum list installed | grep python
-            yum list installed | grep Docker
 
       - name: Commands for EC2
         run: 
@@ -55,6 +51,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: instance_details
+
+      - name: a aws cli cmd
+        shell: bash
+        run: |
+          status=$(aws ec2 describe-instance-status --instance-ids i-06474f0e051d3c623 --query 'InstanceStatuses[0].InstanceStatus.Details[?StatusName==Docker].Status' --output text)
+          echo $status
 
       
            
