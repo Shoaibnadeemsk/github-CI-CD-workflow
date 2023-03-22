@@ -21,7 +21,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: server os
-        run: |
+        run: 
           uname -a
       - name: Generate report
         shell: bash
