@@ -32,7 +32,8 @@ jobs:
 
       - name: Commands for EC2
         run: | 
-          ps -ef | grep Docker
+          ps aux 
+          dpkg -l
           echo "Hello, world!"
        
       - name: Generate report
