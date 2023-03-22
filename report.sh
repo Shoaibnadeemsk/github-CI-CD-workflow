@@ -46,7 +46,8 @@
 #To retrieve the CPU details
  aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
- --start-time 2022-10-18T23:18:00 --end-time 2022-10-24T23:18:00
+ --start-time 2023-03-18T23:18:00 --end-time 2023-03-24T23:18:00
+
 #aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=<your-instance-id> --start-time $(date -u +%FT%TZ --date '-1 hour') --end-time $(date -u +%FT%TZ) --period 60 --statistics Maximum
 
 
