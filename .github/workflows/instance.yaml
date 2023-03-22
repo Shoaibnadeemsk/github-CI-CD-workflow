@@ -30,7 +30,7 @@ jobs:
       # - name: List running processes
       #   run: |
       #     aws ssm start-session --target  i-06474f0e051d3c623 | uname -a
-
+          ssh -i ./GA_Example.pem ec2-user@3.110.184.42
           
       - name: uplod-artifacts
         uses: actions/upload-artifact@v3
@@ -88,7 +88,7 @@ jobs:
         #ssh ec2-user@"public-ip"'yum list installed | wc -l'
          #ssh ec2-user@43.205.139.81 'yum list installed | wc -l'
          #ssh ec2-user@"$public_ip" 'ps aux | wc -l'
-         #ssh ec2-user@43.205.139.81
+         #ssh -i ec2-user@43.205.139.81
           # name: List running processes
           #  run: |
           # INSTANCE_ID=<your-instance-id>

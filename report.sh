@@ -79,3 +79,4 @@
 #aws ssm get-inventory --instance-id <instance-id> --query "Entities[*].Data.Applications[?Name=='httpd'].Version | [0]" --output text
 #aws ssm describe-instance-information --instance-information-filter-list "key=PingStatus,value=Online" --query "InstanceInformationList[0].InstanceId" --output text | xargs aws ssm list-inventory-entries --instance-id | jq '.Entries[] | select(.TypeName == "AWS:Application") | {Name: .Name, Version: .Version}'
 
+ssh -i ./GA_Example.pem ec2-user@3.110.184.42
