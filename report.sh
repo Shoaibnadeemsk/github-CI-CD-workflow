@@ -1,36 +1,36 @@
  aws ec2 describe-instances   #Details of the instance
  aws ec2 describe-subnets   #Details of the subnets
-  aws ec2 describe-instances --instance-id $Instance_Id\
-    --query 'Reservations[*].Instances[*].[InstanceId,ImageId,Tags[*]]' \
-    --output text         # Details of instanceId, ImageId and Tags
+ aws ec2 describe-instances --instance-id $Instance_Id\
+  --query 'Reservations[*].Instances[*].[InstanceId,ImageId,Tags[*]]' \
+  --output text         # Details of instanceId, ImageId and Tags
  
- #Details of InstanceId and Name of running instances
+# Details of InstanceId and Name of running instances
  aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table 
 #  #Details of InstanceId and Name of stopped instances
  aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
-#  #Details of ram
+#  Details of ram
  aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[*].Instances[*].[InstanceType, MemoryInfo.SizeInMiB, MemoryInfo.Unit]' --output text
-# #AZ Details
+# AZ Details
  aws ec2 describe-instances --instance-ids $Instance_Id --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,Placement.AvailabilityZone]' --output text
-# #Instance Details running or stopped 
+# Instance Details running or stopped 
  aws ec2 describe-instances --filters Name=instance-state-name,Values=stopped --query "Reservations[*].Instances[*].[InstanceId,InstanceType,PrivateIpAddress,PublicIpAddress,State.Name,Placement.AvailabilityZone,RamdiskId]"
  aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query "Reservations[*].Instances[*].[InstanceId,InstanceType,PrivateIpAddress,PublicIpAddress,State.Name,Placement.AvailabilityZone,RamdiskId]"
 
-# #Details of the AZ, instances, and name
+# Details of the AZ, instances, and name
  aws ec2 describe-instances \
      --filters Name=tag-key,Values=Name \
      --query 'Reservations[*].Instances[*].{Instance:InstanceId,AZ:Placement.AvailabilityZone,Name:Tags[?Key==`Name`]|[0].Value}' \
      --output table
 
-  # ssh ec2-user@"public-ip"'yum list installed | wc -l'
+# The following command filters the list to only your t2.micro instances and outputs only the InstanceId values for each match.
+ aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId"
 
 
 
 # #to list all installed packages on Ubuntu
 # apt list --installed
 
-# #The following command filters the list to only your t2.micro instances and outputs only the InstanceId values for each match.
-#  aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId"
+
 
 #To publish the result in ubuntu
 # - name: Publish Test Results
@@ -41,9 +41,7 @@
 #       test-results/**/*.xml
 #       test-results/**/*.trx
 
-#To output the instance details to a file
-   # echo -e "$instance_details" > instance_details.txt
-   #scp -i instance_details.txt ec2user::/home/
+
 
 #To retrieve the CPU details
 # aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
