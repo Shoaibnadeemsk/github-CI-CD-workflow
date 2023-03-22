@@ -30,7 +30,8 @@ jobs:
           port : 22 
           script: |
             whoami
-            ps aux | grep Docker
+            ps aux 
+            yum list installed
               
 
       - name: Commands for EC2
