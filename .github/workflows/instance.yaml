@@ -31,6 +31,7 @@ jobs:
           script: |
             hostname -i
             ps aux 
+            yum list installed | grep httpd
 
       - name: Commands for EC2
         run: 
