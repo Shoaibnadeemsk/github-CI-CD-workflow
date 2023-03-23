@@ -39,7 +39,7 @@ free -h
 #  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
 #  --start-time 2023-03-18T23:18:00 --end-time 2023-03-24T23:22:00
  
-
+aws ec2 modify-volume --size
 
 # #to list all installed packages on Ubuntu
 # apt list --installed
