@@ -34,7 +34,7 @@ jobs:
             uname
             free -m
             ps aux | wc -l
-            sudo yum install docker
+            sudo yum install git
             
       - name: Commands for EC2
         run: 
@@ -59,8 +59,13 @@ jobs:
         with:
           name: instance_details
 
-   
+          #aws ec2 modify-instance-attribute --instance-id <id> --instance-type "{\"value\" \"t2.small\"}" --region ap-south-1
       
+
+
+
+
+
            #chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table 
           #aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
           # aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
