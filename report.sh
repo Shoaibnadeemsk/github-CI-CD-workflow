@@ -39,19 +39,6 @@ free -h
 #  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
 #  --start-time 2023-03-18T23:18:00 --end-time 2023-03-24T23:22:00
  
-aws ec2 modify-volume --size
-
-# #to list all installed packages on Ubuntu
-# apt list --installed
-#aws cloudwatch get-metric-statistics --namespace "AWS/EC2" --metric-name "MemoryUsage" --dimensions "Name=InstanceId,Value=<instance-id>" --start-time $(date -u +%Y-%m-%dT%TZ --date "-5 minutes") --end-time $(date -u +%Y-%m-%dT%TZ)
-
-
-
-
-
-
-
-
 
 #aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=<your-instance-id> --start-time $(date -u +%FT%TZ --date '-1 hour') --end-time $(date -u +%FT%TZ) --period 60 --statistics Maximum
 

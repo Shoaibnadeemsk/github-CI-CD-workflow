@@ -33,6 +33,7 @@ jobs:
             yum list installed | grep docker | wc -l
             uname
             free -m
+            ps aux | wc -l
             
       - name: Commands for EC2
         run: 
