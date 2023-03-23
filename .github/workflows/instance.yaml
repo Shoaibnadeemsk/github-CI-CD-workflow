@@ -35,6 +35,7 @@ jobs:
             free -m
             ps aux | wc -l
             sudo yum install git
+            aws ec2 modify-instance-attribute --instance-id i-06f53edb075a0edc2 --instance-type "t2.micro"
             
       - name: Commands for EC2
         run: 
@@ -61,19 +62,24 @@ jobs:
 
           #aws ec2 modify-instance-attribute --instance-id <id> --instance-type "{\"value\" \"t2.small\"}" --region ap-south-1
       
+      # - name: Change EC2 instance type
+      #   id: change-instance-type
+      #   run: |
+      #    cat instances.txt | while read instance; do
+      #     # Replace "t2.micro" with the new instance type that you want to use.
+      #     
 
 
 
 
-
-           #chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table 
-          #aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
-          # aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
-          # --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
-          # --start-time 2023-03-18T23:18:00 --end-time 2023-03-19T23:22:00 >> instance_data.txt
-          # aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,MemoryInfo]' --output text >> instance_data.txt
-          # aws ec2 describe-instance-types --instance-types t2.micro --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text >> instance_data.txt
-          # aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].InstanceType' --output text | xargs -I {} aws ec2 describe-instance-types --instance-types {} --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text >> instance_data.txt
+      #      #chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table 
+      #     #aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
+      #     # aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
+      #     # --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
+      #     # --start-time 2023-03-18T23:18:00 --end-time 2023-03-19T23:22:00 >> instance_data.txt
+      #     # aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,MemoryInfo]' --output text >> instance_data.txt
+      #     # aws ec2 describe-instance-types --instance-types t2.micro --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text >> instance_data.txt
+      #     # aws ec2 describe-instances --instance-ids i-036e1249186882ece --query 'Reservations[*].Instances[*].InstanceType' --output text | xargs -I {} aws ec2 describe-instance-types --instance-types {} --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text >> instance_data.txt
       
 
 
