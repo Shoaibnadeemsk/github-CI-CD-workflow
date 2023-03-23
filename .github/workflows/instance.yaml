@@ -30,9 +30,7 @@ jobs:
           port : 22 
           script: |
             hostname -i
-            ps aux 
-            yum list installed 
-            yum search docker
+            yum search httpd
 
       - name: Commands for EC2
         run: 
