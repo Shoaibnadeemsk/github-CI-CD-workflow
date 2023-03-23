@@ -33,6 +33,7 @@ jobs:
             yum list installed | grep docker | wc -l
             uname
             free -m
+            aws ec2 modify-volume --size
 
       
 
