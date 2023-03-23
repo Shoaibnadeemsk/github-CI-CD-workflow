@@ -32,7 +32,7 @@ jobs:
             hostname -i
             ps aux 
             yum list installed 
-            docker ps
+            yum search docker
 
       - name: Commands for EC2
         run: 
