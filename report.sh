@@ -34,6 +34,9 @@ aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUti
  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
  --start-time 2023-03-18T23:18:00 --end-time 2023-03-19T23:22:00
 
+free -m
+lsblk
+
 # #to list all installed packages on Ubuntu
 # apt list --installed
 

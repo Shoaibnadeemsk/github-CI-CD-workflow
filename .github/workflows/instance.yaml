@@ -32,6 +32,7 @@ jobs:
             hostname -i
             yum list installed | grep docker | wc -l
             uname
+            free -m
 
       
 
