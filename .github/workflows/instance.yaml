@@ -30,7 +30,12 @@ jobs:
           port : 22 
           script: |
             hostname -i
-            yum search docker --version
+            docker --version
+            
+      - name: Checking for the previous step failure
+        if: ${{failure()}}
+        run :
+          echo docker is not present
 
       - name: Commands for EC2
         run: 
