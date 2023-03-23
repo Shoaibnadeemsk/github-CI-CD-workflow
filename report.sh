@@ -38,6 +38,13 @@ aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUti
 # apt list --installed
 
 
+
+
+
+
+
+
+
 #aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=<your-instance-id> --start-time $(date -u +%FT%TZ --date '-1 hour') --end-time $(date -u +%FT%TZ) --period 60 --statistics Maximum
 
 
