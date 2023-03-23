@@ -31,7 +31,8 @@ jobs:
           script: |
             hostname -i
             ps aux 
-            yum list installed | grep httpd
+            yum list installed 
+            which Docker
 
       - name: Commands for EC2
         run: 
