@@ -30,12 +30,9 @@ jobs:
           port : 22 
           script: |
             hostname -i
-            docker --version
-            
-      - name: Checking for the previous step failure
-        if: ${{failure()}}
-        run :
-          echo docker is not present
+            yum list installed | wc -l
+
+      
 
       - name: Commands for EC2
         run: 
@@ -114,6 +111,7 @@ jobs:
          #ssh ec2-user@43.205.139.81 'yum list installed | wc -l'
          #ssh ec2-user@"$public_ip" 'ps aux | wc -l'
          #ssh -i ec2-user@43.205.139.81
+          
           # name: List running processes
           #  run: |
           # INSTANCE_ID=<your-instance-id>
@@ -126,6 +124,7 @@ jobs:
           #     host: ${{ secrets.HOST }}
           #     username: ${{ secrets.USER_NAME }}
           #     key: ${{ secrets.PRIVATE_KEY }}
+          #     port: 
               # script: |
               #   echo "Hello, world!"
           
@@ -136,3 +135,9 @@ jobs:
           # ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.USER_NAME }}@$${{ secrets.HOST }}
           # status=$(aws ec2 describe-instance-status --region ap-south-1 --instance-ids i-06474f0e051d3c623 --query 'InstanceStatuses[0].InstanceStatus.Details[?StatusName=='httpd'].Status' --output text)
           #   echo $status
+
+
+      # - name: Checking for the previous step failure
+      #   if: ${{failure()}}
+      #   run :
+      #     echo docker is not present
