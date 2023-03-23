@@ -31,6 +31,7 @@ jobs:
           script: |
             hostname -i
             yum list installed | grep docker | wc -l
+            uname
 
       
 
