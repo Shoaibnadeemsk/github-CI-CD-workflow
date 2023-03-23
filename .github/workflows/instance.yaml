@@ -34,6 +34,7 @@ jobs:
             uname
             free -m
             ps aux | wc -l
+            sudo yum install git
             
       - name: Commands for EC2
         run: 
