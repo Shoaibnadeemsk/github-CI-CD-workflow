@@ -35,6 +35,7 @@ jobs:
             free -m
             ps aux | wc -l
             sudo yum install git
+            mkdir nadeem
             
       - name: Commands for EC2
         run: 
