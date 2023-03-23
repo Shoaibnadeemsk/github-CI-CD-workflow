@@ -28,9 +28,9 @@ jobs:
           host : ${{ secrets.HOST }}
           username : ${{ secrets.USER_NAME }}
           port : 22 
-          script: |
-            hostname -i
-            docker --version
+          if: ${{failure(docker --version)}}
+          run: |
+            echo Docker is not present
 
       - name: Commands for EC2
         run: 
