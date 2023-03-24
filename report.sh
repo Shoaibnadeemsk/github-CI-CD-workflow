@@ -79,8 +79,8 @@ free -h
 #aws ec2 stop-instances --instance-ids i-06f53edb075a0edc2
 
 
-  aws ec2 modify-instance-attribute \
-  --instance-id i-06f53edb075a0edc2 \
-  --instance-type "{\"Value\": \"t2.small\"}"
+#   aws ec2 modify-instance-attribute \
+#   --instance-id i-06f53edb075a0edc2 \
+#   --instance-type "{\"Value\": \"t2.small\"}"
  
- aws ec2 start-instances --instance-ids i-06f53edb075a0edc2
+#  aws ec2 start-instances --instance-ids i-06f53edb075a0edc2
