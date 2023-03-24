@@ -32,15 +32,19 @@
 
 free -h
  aws ec2 stop-instances --instance-ids i-06f53edb075a0edc2  # Stopped the instance
-  aws ec2 describe-instances \
- --instance-ids  i-06f53edb075a0edc2 \
- --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name,InstanceID:InstanceId,Instancetype:InstanceType}"  \
- --output table     #Validated whether it is stopped or not 
+#   aws ec2 describe-instances \
+#  --instance-ids  i-06f53edb075a0edc2 \
+#  --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name,InstanceID:InstanceId,Instancetype:InstanceType}"  \
+#  --output table     #Validated whether it is stopped or not 
+#  aws ec2 modify-instance-attribute \
+#   --instance-id i-06f53edb075a0edc2 \
+#   --instance-type "{\"Value\": \"t2.small\"}"  #changed to t2.small from t2.medium
+ 
+#  aws ec2 start-instances --instance-ids i-06f53edb075a0edc2   #Started the instance
+
 
 
 #aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 --statistics Maximum --dimensions Name=InstanceId,Value="$Instance_Id"  --start-time 2022-10-18T23:18:00 --end-time 2022-10-19T23:18:00
-
-
  #processes
   #$(ssh ec2-user@"$public_ip" 'ps aux | wc -l')
 #new_tools
