@@ -31,7 +31,7 @@
  --start-time 2023-03-18T23:18:00 --end-time 2023-03-24T23:18:00
 
 free -h
- 
+ aws ec2 stop-instances --instance-ids i-06f53edb075a0edc2
 
 
 #aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 --statistics Maximum --dimensions Name=InstanceId,Value="$Instance_Id"  --start-time 2022-10-18T23:18:00 --end-time 2022-10-19T23:18:00
@@ -68,7 +68,7 @@ free -h
 # --filters Name=instance-state-name,Values=running \
 # --output table
 
-#aws ec2 stop-instances --instance-ids i-0ea05822320404483
+#aws ec2 stop-instances --instance-ids i-06f53edb075a0edc2
 
 # aws ec2 describe-instances \
 # --instance-ids  i-0ea05822320404483 \
