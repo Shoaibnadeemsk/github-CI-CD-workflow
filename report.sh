@@ -30,8 +30,10 @@
  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
  --start-time 2023-03-18T23:18:00 --end-time 2023-03-24T23:18:00
 
-free -h
- aws ec2 stop-instances --instance-ids i-06f53edb075a0edc2  # Stopped the instance
+ free -h
+ aws ec2 describe-instances | jq -r '.Reservations[].Instances[]|.InstanceId+" "+.InstanceType+" "+(.Tags[] | select(.Key == "Name").Value)'
+
+ #aws ec2 stop-instances --instance-ids i-06f53edb075a0edc2  # Stopped the instance
 #   aws ec2 describe-instances \
 #  --instance-ids  i-06f53edb075a0edc2 \
 #  --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name,InstanceID:InstanceId,Instancetype:InstanceType}"  \
