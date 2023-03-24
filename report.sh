@@ -79,4 +79,4 @@ free -h
   --instance-id i-06f53edb075a0edc2 \
   --instance-type "{\"Value\": \"t2.small\"}"
  
- #aws ec2 start-instances --instance-ids i-0ea05822320404483
+ aws ec2 start-instances --instance-ids i-06f53edb075a0edc2
