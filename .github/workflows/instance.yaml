@@ -35,7 +35,7 @@ jobs:
             free -m
             ps aux | wc -l
             sudo yum install git
-            aws ec2 modify-instance-attribute --instance-id i-06f53edb075a0edc2 --instance-type "t2.micro"
+            
             
       - name: Commands for EC2
         run: 
@@ -60,15 +60,9 @@ jobs:
         with:
           name: instance_details
 
-          #aws ec2 modify-instance-attribute --instance-id <id> --instance-type "{\"value\" \"t2.small\"}" --region ap-south-1
+          
       
-      # - name: Change EC2 instance type
-      #   id: change-instance-type
-      #   run: |
-      #    cat instances.txt | while read instance; do
-      #     # Replace "t2.micro" with the new instance type that you want to use.
-      #     
-
+     
 
 
 

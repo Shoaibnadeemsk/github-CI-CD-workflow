@@ -30,37 +30,21 @@
  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
  --start-time 2023-03-18T23:18:00 --end-time 2023-03-24T23:18:00
 
-aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization  --period 3600 \
- --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
- --start-time 2023-03-18T23:18:00 --end-time 2023-03-24T23:22:00
-
 free -h
-
-# aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUsage  --period 3600 \
-#  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
-#  --start-time 2023-03-18T23:18:00 --end-time 2023-03-24T23:22:00
- 
-
-#aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=<your-instance-id> --start-time $(date -u +%FT%TZ --date '-1 hour') --end-time $(date -u +%FT%TZ) --period 60 --statistics Maximum
+ aws ec2 describe-instances \
+ --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name,InstanceID:InstanceId}" \ 
+ --filters Name=instance-state-name,Values=stopped \
+ --output table
 
 
 #aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 --statistics Maximum --dimensions Name=InstanceId,Value="$Instance_Id"  --start-time 2022-10-18T23:18:00 --end-time 2022-10-19T23:18:00
 
-#CPUUtilization
-#$(aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value="$instance_id" --start-time $(date +%s -d '5 minutes ago') --end-time $(date +%s) --period 300 --statistics Average --query 'Datapoints[0].Average')
-
-#RAM 
-#$(aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization --dimensions Name=InstanceId,Value="$instance_id" --start-time $(date +%s -d '5 minutes ago') --end-time $(date +%s) --period 300 --statistics Average --query 'Datapoints[0].Average')
 
  #processes
   #$(ssh ec2-user@"$public_ip" 'ps aux | wc -l')
 #new_tools
   #$(ssh ec2-user@"$public_ip" 'yum list installed | wc -l')
 
-#aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization --dimensions Name=InstanceId,Value="$instance_id" --start-time $(date +%s -d '5 minutes ago') --end-time $(date +%s) --period 300 --statistics Average --query 'Datapoints[0].Average'
-# aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name MemoryUtilization  --period 3600 \
-#            --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
-#            --start-time 2023-03-18T23:18:00 --end-time 2023-03-19T23:22:00
 
 #aws ec2 describe-instance-types --instance-types t2.micro --query 'InstanceTypes[*].[MemoryInfo.SizeInMiB, MemoryInfo.SpeedMHz, MemoryInfo.Type]' --output text
 #  - name: Print installed software
@@ -80,3 +64,22 @@ free -h
 #     files: |
 #       test-results/**/*.xml
 #       test-results/**/*.trx
+  #--------------------------------------------the process to change instance type
+#to get the instance id
+# aws ec2 describe-instances \
+# --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name,InstanceID:InstanceId}" \ 
+# --filters Name=instance-state-name,Values=running \
+# --output table
+
+#aws ec2 stop-instances --instance-ids i-0ea05822320404483
+
+# aws ec2 describe-instances \
+# --instance-ids  i-0ea05822320404483 \
+# --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name,InstanceID:InstanceId,Instancetype:InstanceType}"  \
+# --output table
+
+#  aws ec2 modify-instance-attribute \
+#  --instance-id i-0ea05822320404483 \
+#  --instance-type "{\"Value\": \"t2.small\"}"
+ 
+ #aws ec2 start-instances --instance-ids i-0ea05822320404483
