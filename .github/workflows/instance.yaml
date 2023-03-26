@@ -35,7 +35,17 @@ jobs:
             free -m >> output.txt
             ps aux | wc -l >> output.txt
             sudo yum install git >> output.txt
-            
+      
+      - name: upload-artifacts2-ec2
+        uses: actions/upload-artifact@v3
+        with:
+          name: instance_inner_details
+          path: output.txt  
+      
+      - name: download output file of ec2
+        uses: actions/download-artifact@v3
+        with:
+          name: instance_inner_details
             
       - name: Commands for EC2
         run: 
@@ -60,18 +70,7 @@ jobs:
         with:
           name: instance_details
 
-      - name: upload-artifacts2-ec2
-        uses: actions/upload-artifact@v3
-        with:
-          name: instance_inner_details
-          path: output.txt  
       
-      - name: download output file of ec2
-        uses: actions/download-artifact@v3
-        with:
-          name: instance_inner_details
-
-
 
       #      #chmod 777 report.sh && aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table 
       #     #aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table >> instance_data.txt
