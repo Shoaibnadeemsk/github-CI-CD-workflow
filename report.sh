@@ -1,17 +1,17 @@
  aws ec2 describe-instances   #Details of the instance
  aws ec2 describe-subnets   #Details of the subnets
- aws ec2 describe-instances --instance-id $Instance_Id\
-  --query 'Reservations[*].Instances[*].[InstanceId,ImageId,Tags[*]]' \
-  --output text         # Details of instanceId, ImageId and Tags
+ #aws ec2 describe-instances --instance-id $Instance_Id\
+  #--query 'Reservations[*].Instances[*].[InstanceId,ImageId,Tags[*]]' \
+  #--output text         # Details of instanceId, ImageId and Tags
  
 # Details of InstanceId and Name of running instances
- aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table 
+ #aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table 
 #  #Details of InstanceId and Name of stopped instances
- aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
+ #aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
 #  Details of ram
  aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[*].Instances[*].[InstanceType, MemoryInfo.SizeInMiB, MemoryInfo.Unit]' --output text
 # AZ Details
- aws ec2 describe-instances --instance-ids $Instance_Id --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,Placement.AvailabilityZone]' --output text
+ #aws ec2 describe-instances --instance-ids $Instance_Id --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,Placement.AvailabilityZone]' --output text
 # Instance Details running or stopped 
  aws ec2 describe-instances --filters Name=instance-state-name,Values=stopped --query "Reservations[*].Instances[*].[InstanceId,InstanceType,PrivateIpAddress,PublicIpAddress,State.Name,Placement.AvailabilityZone]" --output table
  aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query "Reservations[*].Instances[*].[InstanceId,InstanceType,PrivateIpAddress,PublicIpAddress,State.Name,Placement.AvailabilityZone]" --output table
@@ -30,10 +30,10 @@
  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
  --start-time 2023-03-23T23:18:00 --end-time 2023-03-27T23:18:00
 
- free -h
+ 
  aws ec2 describe-instances | jq -r '.Reservations[].Instances[]|.InstanceId+" "+.InstanceType+" "+(.Tags[] | select(.Key == "Name").Value)'
 
- aws ec2 modify-volume --volume-id vol-0507a10c674df3e01 --size 20
+ #aws ec2 modify-volume --volume-id vol-0507a10c674df3e01 --size 20
 
 
 
