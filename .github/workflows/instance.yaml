@@ -29,12 +29,12 @@ jobs:
           username : ${{ secrets.USER_NAME }}
           port : 22 
           script: |
-            hostname -i
-            yum list installed | grep docker | wc -l
-            uname
-            free -m
-            ps aux | wc -l
-            sudo yum install git
+            hostname -i >> output.txt
+            yum list installed | grep docker | wc -l >> output.txt
+            uname >> output.txt
+            free -m >> output.txt
+            ps aux | wc -l >> output.txt
+            sudo yum install git >> output.txt
             
             
       - name: Commands for EC2
