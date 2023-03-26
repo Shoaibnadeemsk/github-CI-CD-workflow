@@ -31,20 +31,21 @@
  --start-time 2023-03-25T23:18:00 --end-time 2023-03-27T23:18:00
 
 
- #aws ec2 modify-volume --volume-id vol-0507a10c674df3e01 --size 20
+ aws ec2 modify-volume --volume-id vol-0507a10c674df3e01 --size 30
 
 
 
- #aws ec2 stop-instances --instance-ids i-06f53edb075a0edc2  # Stopped the instance
+ #aws ec2 stop-instances --instance-ids i-06f53edb075a0edc2  # Stopped the instance  01
 #   aws ec2 describe-instances \
 #  --instance-ids  i-06f53edb075a0edc2 \
 #  --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name,InstanceID:InstanceId,Instancetype:InstanceType}"  \
-#  --output table     #Validated whether it is stopped or not 
-#  aws ec2 modify-instance-attribute \
-#   --instance-id i-06f53edb075a0edc2 \
-#   --instance-type "{\"Value\": \"t2.small\"}"  #changed to t2.small from t2.medium
+#  --output table     #Validated whether it is stopped or not                02
+
+  aws ec2 modify-instance-attribute \
+   --instance-id i-06f53edb075a0edc2 \
+   --instance-type "{\"Value\": \"t2.medium\"}"  #changed to t2.medium from t2.small  03
  
-#  aws ec2 start-instances --instance-ids i-06f53edb075a0edc2   #Started the instance
+  aws ec2 start-instances --instance-ids i-06f53edb075a0edc2   #Started the instance  04
 
 
 
