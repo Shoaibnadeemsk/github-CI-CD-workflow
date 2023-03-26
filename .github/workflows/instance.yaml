@@ -29,23 +29,12 @@ jobs:
           username : ${{ secrets.USER_NAME }}
           port : 22 
           script: |
-            hostname -i >> output.txt
-            yum list installed | grep docker | wc -l >> output.txt
-            uname >> output.txt
-            free -m >> output.txt
-            ps aux | wc -l >> output.txt
-            sudo yum install git >> output.txt
-      
-      - name: upload-artifacts2-ec2
-        uses: actions/upload-artifact@v3
-        with:
-          name: instance_inner_details
-          path: output.txt  
-      
-      - name: download output file of ec2
-        uses: actions/download-artifact@v3
-        with:
-          name: instance_inner_details
+            hostname -i 
+            yum list installed | grep docker | wc -l 
+            uname 
+            free -m 
+            ps aux | wc -l 
+            sudo yum install git 
             
       - name: Commands for EC2
         run: 
@@ -57,8 +46,6 @@ jobs:
           chmod 777 report.sh
           ./report.sh > instance_data.txt
 
-          
-    
       - name: upload-artifacts
         uses: actions/upload-artifact@v3
         with:
