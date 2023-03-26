@@ -60,9 +60,16 @@ jobs:
         with:
           name: instance_details
 
-          
+      - name: upload-artifacts2-ec2
+        uses: actions/upload-artifact@v3
+        with:
+          name: instance_inner_details
+          path: output.txt  
       
-     
+      - name: download output file of ec2
+        uses: actions/download-artifact@v3
+        with:
+          name: instance_inner_details
 
 
 
