@@ -48,7 +48,7 @@
   # aws ec2 start-instances --instance-ids i-06f53edb075a0edc2   #Started the instance  04
 
 
-
+#----------------------------------------------------------------------------------------------------
 #aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 --statistics Maximum --dimensions Name=InstanceId,Value="$Instance_Id"  --start-time 2022-10-18T23:18:00 --end-time 2022-10-19T23:18:00
  #processes
   #$(ssh ec2-user@"$public_ip" 'ps aux | wc -l')
