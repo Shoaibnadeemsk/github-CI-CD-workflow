@@ -9,7 +9,7 @@
 #  #Details of InstanceId and Name of stopped instances
  #aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[].Instances[].{Name:Tags[?Key==`Name`].Value | [0],InstanceId:InstanceId}' --output table
 #  Details of ram
- aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[*].Instances[*].[InstanceType, MemoryInfo.SizeInMiB, MemoryInfo.Unit]' --output text
+ #aws ec2 describe-instances --instance-ids i-06474f0e051d3c623 --query 'Reservations[*].Instances[*].[InstanceType, MemoryInfo.SizeInMiB, MemoryInfo.Unit]' --output text
 # AZ Details
  #aws ec2 describe-instances --instance-ids $Instance_Id --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,Placement.AvailabilityZone]' --output text
 # Instance Details running or stopped 
@@ -28,10 +28,10 @@
 #To retrieve the CPU details
  aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \
  --statistics Maximum --dimensions Name=InstanceId,Value=i-06474f0e051d3c623 \
- --start-time 2023-03-25T23:18:00 --end-time 2023-03-27T23:18:00
+ --start-time 2023-03-26T23:18:00 --end-time 2023-03-28T23:18:00
 
 
- aws ec2 modify-volume --volume-id vol-0507a10c674df3e01 --size 30
+ #aws ec2 modify-volume --volume-id vol-0507a10c674df3e01 --size 30
 
 
 
@@ -41,11 +41,11 @@
 #  --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name,InstanceID:InstanceId,Instancetype:InstanceType}"  \
 #  --output table     #Validated whether it is stopped or not                02
 
-  aws ec2 modify-instance-attribute \
-   --instance-id i-06f53edb075a0edc2 \
-   --instance-type "{\"Value\": \"t2.medium\"}"  #changed to t2.medium from t2.small  03
+  # aws ec2 modify-instance-attribute \
+  #  --instance-id i-06f53edb075a0edc2 \
+  #  --instance-type "{\"Value\": \"t2.medium\"}"  #changed to t2.medium from t2.small  03
  
-  aws ec2 start-instances --instance-ids i-06f53edb075a0edc2   #Started the instance  04
+  # aws ec2 start-instances --instance-ids i-06f53edb075a0edc2   #Started the instance  04
 
 
 
